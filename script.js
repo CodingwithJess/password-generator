@@ -27,6 +27,26 @@ function passwordOptions (){
     alert("Must select at least one character type. Try again.")
     return
   }
+
+  var passwordOptions ={
+    length : length,
+    specChar : specChar,
+    confNum : confNum, 
+    confLower : confLower,
+    confUpper : confUpper,
+  }
+  return passwordOptions
+}
+
+function passwordRandom(arr){
+  var randomIndex = Math.floor(Math.random() * arr.length)
+  var randomElement = arr[randomIndex]
+  return randomElement
+}
+
+
+function passwordGenerate(){
+  var options = passwordOptions()
 }
 
 passwordOptions()

@@ -28,6 +28,7 @@ function passwordOptions (){
     return
   }
 
+  // prompt answers -length and true or false for else
   var passwordOptions ={
     length : length,
     specChar : specChar,
@@ -38,15 +39,16 @@ function passwordOptions (){
   return passwordOptions
 }
 
+// creation of random password
 function passwordRandom(arr){
   var randomIndex = Math.floor(Math.random() * arr.length)
   var randomElement = arr[randomIndex]
   return randomElement
 }
-
+// adding together passwordOptions and passwordRandom??
 
 function passwordGenerate(){
-  var options = passwordOptions()
+  var options = passwordOptions();
 }
 
 passwordOptions()

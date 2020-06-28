@@ -57,7 +57,6 @@ function passwordOptions() {
     passwordRandom(special,length);
   }
 
-  console.log("user char array:", userChar);
   passwordRandom(userChar);
 }
 
@@ -71,7 +70,11 @@ function passwordRandom(arr,length) {
     var randomPick = arr[randomIndex];
     guaranteedPW.push(randomPick);
   }
+  var ps = userChar.join("");
+  UserInput(ps);
+  return ps;
 }
+
 
 function guaranteedPassword(result) {
   for (let index = 0; index < guaranteedPW.length; index++) {}
@@ -87,5 +90,5 @@ function passwordGenerate() {
 function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
-  passwordText.value = password;
+  passwordText.textContent = password;
 }

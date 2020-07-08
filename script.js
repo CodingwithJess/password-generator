@@ -14,7 +14,7 @@ function passwordOptions() {
       return;
   }
   if (length < 8 || length > 128) {
-      alert("Please enter a number between 8 and 128");m
+      alert("Please enter a number between 8 and 128");
         return;
   }
 

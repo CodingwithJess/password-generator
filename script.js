@@ -3,7 +3,6 @@ var lowerCase = "abcdefghijklmnopqrstuvwxyz".split("");
 var upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
 var numbers = "1234567890".split("");
 var special = "!@#$%&*?".split("");
-var generatePassword = [];
 
 // Add event listener to generate button
 // changed to passwordOptions
@@ -15,7 +14,7 @@ function passwordOptions() {
       return;
   }
   if (length < 8 || length > 128) {
-      alert("Please enter a number between 8 and 128");
+      alert("Please enter a number between 8 and 128");m
         return;
   }
 
@@ -31,51 +30,62 @@ function passwordOptions() {
      alert("Must select at least one character type. Try again.");
       return;
   }
+  var options = {
+    length : length,
+    specChar : specChar,
+    confNum : confNum,
+    confLower : confLower,
+    confUpper : confUpper,
+  }
+  return options;
+}
 
-  function passwordRandom(arr,length) {
-    debugger;
-    for (var i = 0; i < length; i++) {
+  function passwordRandom(arr) {
       var randomIndex = Math.floor(Math.random() * arr.length);
       var randomPick = arr[randomIndex];
-      generatePassword.push(randomPick);
-    }
+    
+      return randomPick;
   }
-  passwordRandom();
-
-  // how to include users selections from prompts
-  var userChar = [];
-
-  if (confLower) {
-    passwordRandom(lowerCase,length);
-  }
-  if (confUpper) {
-    passwordRandom(upperCase,length);
-  }
-  if (confNum) {
-    passwordRandom(numbers,length);
-  }
-
-  if (specChar) {
-    passwordRandom(special,length);
-  }
-}
-passwordOptions();
-
-function passwordMaker(result) {
-  for (let index = 0; index < generatePassword.length; index++) {}
-}
-passwordMaker();
 
 // creation of random password
 // adding together passwordOptions and passwordRandom??
-function passwordGenerate() {
-  var options = passwordRandom + userChar;
+function generatePassword() {
+  var options = passwordOptions();
+  var result = [];
+  var possChar = [];
+  var guarChar = [];
+  
+  if (options.confLower){
+    possChar= possChar.concat(lowerCase);
+    guarChar.push(passwordRandom(lowerCase)) 
+  }if (options.confUpper){
+    possChar= possChar.concat(upperCase);
+    guarChar.push(passwordRandom(upperCase)) 
+  }if (options.confNum){
+    possChar= possChar.concat(numbers);
+    guarChar.push(passwordRandom(numbers)) 
+  }if (options.specChar){
+    possChar= possChar.concat(special);
+    guarChar.push(passwordRandom(special)) 
+  }
+
+  for (var i = 0; i < options.length; i++){
+    var possibleChar= passwordRandom(possChar)
+    result.push(possibleChar)
+  }
+
+  for (var i =0; i < guarChar.length; i++){
+    result[i]=guarChar[i]
+  }
+
+  return result.join("");
 }
 
-// Write password to the #password input
+var generateBtn = document.querySelector("#generate")
+
 function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
   passwordText.textContent = password;
 }
-generateBtn.addEventListener("click", passwordOptions());
+generateBtn.addEventListener("click", writePassword);
